@@ -1,0 +1,67 @@
+/*
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
+
+This is a project for course DVD017 at Blekinge Institute of Technology, held
+in fall 2006 by Fredrik Erlandsson.
+
+========================= INSTRUCTIONS FOR INSPECTORS =========================
+
+A Makefile has been provided. To compile the project, simply issue
+
+$ make all
+
+The two binaries that should be generated are alice and bob.
+To start the server, issue
+
+$ ./bob -p 7000
+
+to have Bob the Server listen to port 7000. Establish a connection with
+
+$ ./alice -h 127.0.0.1 -p 7000
+
+(change server IP and port if applicable).
+
+If changes are necessary on any of the source files, issue
+
+$ make all
+
+to compile all parts again. To compile only parts, there are also the targets 
+"alice" and "bob" defined in the Makefile.
+
+If you have any questions, feel free to contact me at anwf06@student.bth.se
+
+===============================================================================
+
+The project has been divided into three parts by the lecturer:
+
+(1) Blowfish encryption algorithm: 
+    Source files are blowfish.{c, h}, blowinit.h
+
+(2) Diffie-Hellman key exchange:
+    dh.{c, h}, genprime.{c, h}
+
+(3) TCP server/client architecture to use the above:
+    alice.c, bob.c
+
+Alice and Bob are the client and server, respectively. Bob the Server has been 
+implemented to listen to a socket and wait for a connection from Alice. As soon
+as the connection comes in, Alice starts negotiating the key by sending p, g, 
+and a. Bob can calculate the key and responds with his own public key. After
+Alice has calculated the key, a prompt is shown where you can type in something
+that will be encrypted, transmitted to Bob by Alice, then decrypted and 
+displayed by Bob.
+
+NOTE: The input is NOT sent back to Alice.
